@@ -1,0 +1,159 @@
+-- My Creative scenario:
+-- A contemporary cinema named ‘la Vitrine’ located in central paris are looking at ways to boost their viewership and popularity.
+ -- Upon much research and deliberation they had concluded on introducing an affiliate program. This program allows regular attendees at the 
+ -- cinema to enrol in the program, creating a membership to become an affiliate and allows them to earn points per visit. The more they visit 
+ -- ‘La Vitrine’ the more points they earn within their individual affiliate membership. An increase in points means the affiliate gets the chance 
+ -- to earn rewards. This reward system is available for everyone who is affiliated with ‘La Vitrine’ and once they earn above 20,000 points they 
+ -- can start earning rewards.
+
+-- The reward system operates on a points threshold. The more points one earns the greater reward they gain. This was introduced to increase 
+-- the number of movie attendees as well as to produce loyalty between ‘La Vitrine’ and its viewers. ‘La Vitrine’ will produce a database to 
+-- showcase all of its new affiliates upon introduction of the new affiliate program. This database will be created to properly categorise all 
+-- variables situated within this program, making it easier to understand and interpret. As well as to ensure every affiliate is given what they 
+-- are entitled to.
+
+-- (La Vitrine has ensured the first normal form (1NF) was included upon creation of this database. They mentioned affiliate info in one table so 
+-- that it is not cluttered by mentioning first name and last name in the points table which showcases the individual visitations and points. same for
+--  the rewards table).
+-- (The points table has to be mentioned in the rewards table to show the points each affiliate has as well as the rewards to signify their 
+-- eligibility, as it is categorised, a certain amount of points means entitlement to certain rewards).
+
+
+  -- CREATE DATABASE LVAFFILIATE_PROGRAM;
+  -- USE LVAFFILIATE_PROGRAM;
+  -- CREATE TABLE Affiliates
+  -- (A_id INTEGER NOT NULL PRIMARY KEY,
+  -- First_name VARCHAR (60),
+  -- Surname VARCHAR (60),
+  -- Age Integer);
+
+-- INSERT INTO Affiliates
+-- (A_id, First_name, Surname, Age)
+-- VALUES
+-- ('1', 'Lucy', 'Smith', '19'),
+-- ('2', 'Oliver', 'Obrien', '22'),
+ -- ('3', 'Stacey', 'carter', '29'),
+ -- ('4', 'Tino', 'siya', '18'),
+-- ('5', 'David', 'rich', '32'),
+-- ('6', 'Milicent', 'hare', '41'),
+-- ('7', 'Nicole', 'Smith', '23'),
+-- ('8', 'Tate', 'Rae', '23'),
+-- ('9', 'Diamond', 'Bling', '44'),
+-- ('10', 'Ryan', 'Lent', '29')
+
+
+ -- CREATE FUNCTION full_name(First_name CHAR(20),
+-- Surname CHAR (30) )
+-- RETURNS CHAR(55) DETERMINISTIC
+-- RETURN CONCAT(First_name, ' ', Surname);
+
+-- SELECT A_id, full_name(First_name, Surname)
+-- AS fn
+-- FROM Affiliates
+
+-- SELECT * FROM Affiliates
+-- ORDER BY AGE;
+-- SELECT * FROM Affiliates
+-- ORDER BY A_id;
+
+ -- CREATE TABLE POINTS
+-- (A_id INTEGER,
+-- Visits INTEGER NOT NULL,
+-- POINTS VARCHAR (200) );
+
+ -- Alter Table POINTS
+ -- ADD CONSTRAINT
+ -- fk_A_Id
+ -- FOREIGN KEY
+--  (A_ID)
+--  REFERENCES
+ -- Affiliates
+ -- (A_ID);
+
+
+ -- INSERT INTO POINTS
+ -- (A_id, Visits, POINTS)
+ -- VALUES
+ -- ('1', '25', '25,000'),
+ -- ('2', '30', '30,000'),
+-- ('3', '70', '70,000'),
+ -- ('4', '100', '100,000'),
+--  ('5', '60', '60,000'),
+--  ('6', '200', '200,000'),
+ -- ( '7', '130', '130,000'),
+ -- ('8', '43', '43,000'),
+ -- ('9', '68', '68,000'),
+ -- ('10', '31', '31,000')
+
+
+ -- SELECT *
+ -- FROM Affiliates INNER JOIN POINTS
+-- ON Affiliates.A_id = POINTS.A_id;
+
+-- SELECT *
+-- FROM Affiliates RIGHT JOIN POINTS
+ -- ON Affiliates.A_id = POINTS.A_id;
+
+-- SELECT UCASE("visits") AS UpperText;
+
+-- SELECT SUM(Visits), A_id
+-- FROM POINTS
+-- GROUP BY A_id;
+
+
+-- CREATE TABLE REWARDS
+ -- (A_id INTEGER,
+ -- Points VARCHAR (200),
+ -- REWARDS VARCHAR (255));
+
+-- INSERT INTO REWARDS
+-- VALUES
+ -- ('1', '25,000', 'free S drink'),
+ -- ('2', '30,000', 'free L popcorn'),
+ -- ('3', '70,000', '5 free tickets'),
+ -- ('4', '100,000', '10 free tickets'),
+ -- ('5', '60,000', 'free L popcorn'),
+ -- ('6', '200,000', '20 free tickets'),
+ -- ('7', '130,000', '10 free tickets'),
+ -- ('8', '43,000', 'free L popcorn'),
+ -- ('9', '68,000', '5 free tickets'),
+ -- ('10', '31,000', 'free L popcorn'),
+-- ('11', '7,000', 'NOT ELIGIBLE');
+
+
+-- SET SQL_SAFE_UPDATES=0;
+-- DELETE FROM REWARDS
+-- WHERE A_id= '11';
+
+
+
+-- SELECT * FROM REWARDS
+-- ORDER BY REWARDS DESC;
+
+-- SELECT * FROM REWARDS
+-- ORDER BY A_id;
+
+-- SELECT AVG ('Points')
+-- FROM REWARDS
+
+ -- SELECT COUNT(A_id), POINTS
+ -- FROM REWARDS
+-- GROUP BY POINTS;
+
+ -- SELECT  
+ -- A_id,  REWARDS,
+ -- LTRIM( REWARDS) AS  TrimmedAname 
+-- FROM  REWARDS;
+
+-- USE LVAFFILIATE_PROGRAM
+ -- DELIMITER $$
+ -- CREATE PROCEDURE find_Affiliates (IN f_name VARCHAR(60), 
+--  IN S_NAME VARCHAR(60) )
+ -- BEGIN
+-- SELECT * 
+--  FROM Affiliates
+-- WHERE First_name = f_name AND Surname = S_NAME;
+ -- END $$
+--  DELIMITER ;
+
+-- CALL find_Affiliates("Diamond", "Bling");
