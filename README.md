@@ -5,3 +5,5 @@ Hello, my name is mutsawashe gabrielle shamu, but i also go by gabrielle. Here a
 i created an API to integrate the database i made to the web. i used node.js as my construct. i implemented API endpoints with appropriate functionality using Express.js (in Node.js). I added a HTTP response message/error handling to my endpoints implementation. 
 
 i also created a movie guide via codepen where users can input their preffered genre, and then a selection of movies is recommended to them. The HTML, Javascript, and CSS code has been pushed to my main branch for anybody to view.
+
+i created a weather app using HTML,CSS and javascript
